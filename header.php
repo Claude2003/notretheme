@@ -34,11 +34,19 @@
         <li><a href="<?php echo esc_url(get_post_type_archive_link('equipe')); ?>"> Equipe</a></li>
         <li><a href="<?php echo esc_url(get_post_type_archive_link('matchs')); ?>">Matchs</a></li>
         
+
     <hr>
         <li><a href="#">À propos</a></li>
         <li><a href="#">Créer une équipe</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#" class="logout">← Se déconnecter</a></li>
+  
+
+        <?php if (is_user_logged_in()) : ?>
+    <a class="auth-button" href="<?php echo wp_logout_url(home_url()); ?>">← Se déconnecter</a>
+<?php else : ?>
+    <a class="auth-button" href="<?php echo esc_url(home_url('/connexion')); ?>">Connexion</a>
+<?php endif; ?>
+
     </ul>
 </nav>
 
