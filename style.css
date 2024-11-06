@@ -30,6 +30,24 @@ body {
     align-items: center;
     height: 100%; /* Ajuster en fonction de la hauteur de votre conteneur */
 }
+
+.edit-profile1 {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color:#ffc107; 
+    color: white;
+    font-size: 10px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile1:hover {
+    background-color: #ffc107; /* Légèrement plus foncé au survol */
+}
+
 /* Styles pour les titres */
 h1 {
     font-size: 32px;
@@ -37,6 +55,9 @@ h1 {
     margin: 0 0 20px; /* Espace en dessous */
 }
 
+hr{
+    background-color: #ffc107 ;
+}
 h2 {
     font-size: 20px;
     font-weight: bold;
@@ -92,98 +113,100 @@ p {
 
 
 
-/* Footer Styling pour version mobile */
+/* Style de base du footer */
 .site-footer {
     background-color: #121212;
     color: #ffffff;
-    padding: 20px;
+    padding: 40px 20px;
     font-family: Arial, sans-serif;
-    text-align: left;
 }
 
+/* Organisation du contenu du footer */
 .footer-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    gap: 30px;
 }
 
-.footer-logo img {
-    width: 60px;
+/* Style pour chaque section */
+.footer-section {
     margin-bottom: 20px;
 }
 
-.footer-menu ul,
-.footer-legal ul {
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #ffc107;
+}
+
+/* Logo */
+.footer-logo img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+/* Navigation */
+.footer-menu, .footer-legal {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer-menu ul {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.footer-menu ul li {
-    margin: 5px 0;
-}
-
-.footer-menu ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.footer-legal ul {
-    margin-bottom: 20px;
-}
-
-.footer-legal ul li {
+.footer-menu li, .footer-legal li {
     margin: 8px 0;
 }
 
-.footer-legal ul li a {
+.footer-menu li a, .footer-legal li a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 0.9em;
+    transition: color 0.3s ease;
 }
 
-.footer-social {
-    display: flex;
-    gap: 15px;
+.footer-menu li a:hover, .footer-legal li a:hover {
+    color: #ffc107;
 }
 
+/* Réseaux sociaux */
 .footer-social a {
     color: #ffffff;
     font-size: 20px;
-    text-decoration: none;
+    margin-right: 15px;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .footer-social a:hover {
     color: #ffc107;
+    transform: scale(1.1);
 }
 
-/* Ajustement mobile */
-@media (max-width: 768px) {
+/* Disposition pour la version bureau */
+@media (min-width: 1024px) {
     .footer-content {
-        text-align: left;
-    }
-
-    .footer-menu ul {
-        grid-template-columns: 1fr 1fr;
+        flex-direction: row;
         justify-content: space-between;
     }
+
+    /* Agrandir les sections et espacer */
+    .footer-section {
+        max-width: 250px;
+    }
+
+    .footer-menu li a, .footer-legal li a {
+        font-size: 1.1em;
+    }
+
+    .footer-social a {
+        font-size: 24px;
+    }
 }
+
 
 /* Header style */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000;
+    background-color: #101114;
     padding: 10px 20px;
 }
 .header .logo img {
@@ -214,7 +237,7 @@ p {
     height: 100%;
     width: 250px;
     background-color: #111;
-    color: #fff;
+    color: #ffc107;
     transition: 0.3s ease-in-out;
     z-index: 1000;
     padding-top: 20px;
@@ -322,6 +345,7 @@ hr {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            
         }
 
         .close-btn {
@@ -330,6 +354,7 @@ hr {
             color: #fff;
             font-size: 24px;
             cursor: pointer;
+            margin-top: -30px;
         }
 
         .sidebar .profile img {
@@ -337,12 +362,14 @@ hr {
             height: 50px;
             border-radius: 50%;
             margin-right: 10px;
+            margin-top: 50px;
         }
 
         .sidebar-menu {
             list-style-type: none;
             padding: 0;
             margin: 20px 0;
+            margin-top: 50px;
         }
 
         .sidebar-menu li {
@@ -355,6 +382,8 @@ hr {
             font-size: 18px;
         }
 
+
+        
         .logout {
             font-size: 16px;
             color: #ccc;
@@ -1122,9 +1151,7 @@ form p.error input {
    
 }
 
-h1, h2 {
-    color: #f0c700;
-}
+
 
 h1 {
     text-align: center;
@@ -1258,25 +1285,7 @@ p.error-message {
     margin-top: 1rem;
 }
 
-/* Activités récentes */
-.recent-activities {
-    padding: 1rem;
-    border-radius: 8px;
-}
 
-.recent-activities ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.recent-activities ul li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.recent-activities ul li:last-child {
-    border-bottom: none;
-}
 
 /* Responsiveness */
 @media (max-width: 600px) {
@@ -1289,3 +1298,106 @@ p.error-message {
         font-size: 0.9rem;
     }
 }
+
+
+/* Barre de navigation bureau */
+/* Barre de navigation bureau */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background-color: #101114; /* Couleur de fond sombre */
+}
+
+/* Logo dans le header */
+/* Barre de navigation bureau */
+.desktop-nav {
+    margin-left: auto; /* Aligne la navigation à droite */
+}
+
+.desktop-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Cacher le menu de bureau sur mobile */
+@media (max-width: 1023px) {
+    .desktop-nav {
+        display: none;
+    }
+}
+
+
+/* Cacher le menu de bureau sur mobile */
+.mobile-nav,
+.menu-toggle {
+    display: none;
+}
+
+/* Afficher le menu de bureau uniquement sur les écrans larges */
+@media (min-width: 1024px) {
+    .desktop-nav {
+        display: block;
+    }
+
+    .menu-toggle,
+    .mobile-nav {
+        display: none;
+    }
+}
+
+/* Afficher le menu mobile sur les écrans étroits */
+@media (max-width: 1023px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton hamburger */
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    /* Sidebar pour la navigation mobile */
+    .mobile-nav {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background-color: #111;
+        color: #ffc107;
+        transition: right 0.3s ease;
+        padding-top: 20px;
+        z-index: 1000;
+    }
+
+    .mobile-nav.open {
+        right: 0;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        margin-top: -10px;
+    }
+}
+
