@@ -1,7 +1,17 @@
 <?php get_header(); ?>
 
+<div class="hero-section2">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero3.svg" alt="League of Legends" class="hero-image">
+    <div class="hero-overlay2"></div>
+    <div class="hero-content2">
+        <h2>MATCHS</h2>
+        <p>Plongez dans l’arène de l’e-sport, là où les légendes se forment et l’intensité du jeu atteint son apogée !</p>
+    </div>
+</div>
+
 <div class="matchs-archive">
-    <div class="intro-text">
+    
+<div class="intro-text">
         
         <p>Explorez ici tous les matchs à venir. Retrouvez les informations importantes, comme la date, l'heure et le lieu de chaque match. Restez à jour et ne manquez aucune rencontre !</p>
     </div>

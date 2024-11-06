@@ -1,5 +1,14 @@
 <?php get_header(); ?>
 
+<div class="hero-section2">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero3.svg" alt="League of Legends" class="hero-image">
+    <div class="hero-overlay2"></div>
+    <div class="hero-content2">
+        <h2>équipe</h2>
+        <p>Plongez dans l’arène de l’e-sport, là où les légendes se forment et l’intensité du jeu atteint son apogée !</p>
+    </div>
+</div>
+
 <div class="equipes-archive">
     
     <p> Ici, nous vous offrons un accès direct aux matchs les plus attendus, aux équipes de haut niveau et aux compétitions palpitantes de league of legends. Rejoignez une communauté de passionnés qui vivent chaque moment intensément. Suivez les équipes en temps réel et ne manquez jamais une occasion d’encourager vos favoris.</p>

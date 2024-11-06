@@ -12,7 +12,7 @@
 <body <?php body_class(); ?>>
 
 <header class="header">
-    <a href="#" class="logo">
+    <a class="logo" href="<?php echo esc_url(home_url('/')); ?>" >
         <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/Logo.svg'); ?>" alt="Logo">
     </a>
     <button class="menu-toggle" id="menuToggle">
@@ -25,21 +25,27 @@
     <div class="sidebar-header">
         <button class="close-btn" id="closeBtn">&times;</button>
         <div class="profile">
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/path/to/profile-picture.jpg'); ?>" alt="Profile Picture">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/avatar.svg'); ?>" alt="Profile Picture">
             <p>Arthur Lacroix</p>
-            <button class="edit-profile">Modifier le profil</button>
+            
+            <a href="<?php echo esc_url(home_url('/profile')); ?>" class="edit-profile">Modifier le profil</a>
+
         </div>
     </div>
     <ul class="sidebar-menu">
+    
+    <hr>
         <li><a href="<?php echo esc_url(get_post_type_archive_link('equipe')); ?>"> Equipe</a></li>
         <li><a href="<?php echo esc_url(get_post_type_archive_link('matchs')); ?>">Matchs</a></li>
         
 
     <hr>
-        <li><a href="#">À propos</a></li>
-        <li><a href="#">Créer une équipe</a></li>
-        <li><a href="#">Contact</a></li>
-  
+       
+        <li><a href="<?php echo esc_url(home_url('/ajouter-equipe ')); ?>"> Créer une équipe</a></li>
+        <li><a href="<?php echo esc_url(home_url('/')); ?>"></i>Contact</a></li>
+         <li><a href="#">À propos</a></li>
+
+
 
         <?php if (is_user_logged_in()) : ?>
     <a class="auth-button" href="<?php echo wp_logout_url(home_url()); ?>">← Se déconnecter</a>

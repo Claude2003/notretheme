@@ -3,8 +3,7 @@
 get_header();
 
 echo '<div class="inscription-form-container">';
-echo '<h1>Inscription</h1>';
-echo '<p>Bienvenue ! Remplissez le formulaire ci-dessous pour créer un nouveau compte.</p>';
+
 
 // Vérifie si l'utilisateur est déjà connecté
 if (is_user_logged_in()) {
@@ -77,6 +76,17 @@ if (is_user_logged_in()) {
 
     // Afficher le formulaire d'inscription
     ?>
+
+    <div class="hero-section2">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero3.svg" alt="League of Legends" class="hero-image">
+    <div class="hero-overlay2"></div>
+    <div class="hero-content2">
+        <h2>S'inscrire</h2>
+        <p>Plongez dans l’arène de l’e-sport, là où les légendes se forment et l’intensité du jeu atteint son apogée !</p>
+    </div>
+</div>
+
+<section class="inscription-form">
     <form method="post" action="" enctype="multipart/form-data">
         <p>
             <label for="username">Nom d’utilisateur</label>
@@ -102,6 +112,7 @@ if (is_user_logged_in()) {
             <input type="submit" value="Créer mon compte">
         </p>
     </form>
+</section>
     <?php
 }
 

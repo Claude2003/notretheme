@@ -1,10 +1,17 @@
 <?php
 /* Template Name: Connexion */
 get_header(); ?>
+<div class="hero-section2">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero3.svg" alt="League of Legends" class="hero-image">
+    <div class="hero-overlay2"></div>
+    <div class="hero-content2">
+        <h2>Se connecter</h2>
+        <p>Plongez dans l’arène de l’e-sport, là où les légendes se forment et l’intensité du jeu atteint son apogée !</p>
+    </div>
+</div>
 
 <div class="connexion-form-container">
-    <h1>Connexion</h1>
-
+    
     <?php
     // Vérifier si l'utilisateur est connecté
     if (is_user_logged_in()) {

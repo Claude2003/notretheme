@@ -4,8 +4,18 @@
 
 <?php get_header(); ?>
 
+<div class="hero-section2">
+<img src="<?php echo get_template_directory_uri(); ?>/assets/img/hero3.svg" alt="League of Legends" class="hero-image">
+    <div class="hero-overlay2"></div>
+    <div class="hero-content2">
+        <h2>
+CREER UNE EQUIPE
+</h2>
+        <p>Plongez dans l’arène de l’e-sport, là où les légendes se forment et l’intensité du jeu atteint son apogée !</p>
+    </div>
+</div>
+
 <div class="page-header">
-    <h1>Ajoutez une Nouvelle Équipe</h1>
     <p>Bienvenue sur la page d'ajout d'équipe ! Ici, vous pouvez créer et enregistrer une nouvelle équipe en quelques étapes simples. 
        Remplissez les informations nécessaires telles que le nom de l'équipe, sa description, ainsi que les joueurs et leurs pseudonymes.
     </p>

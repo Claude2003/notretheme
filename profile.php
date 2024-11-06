@@ -3,9 +3,8 @@
 get_header(); ?>
 
 <div class="profile-container">
-    <h1>Mon Profil</h1>
-
-    <?php
+    
+<?php
     // Vérifier si l'utilisateur est connecté
     if (!is_user_logged_in()) {
         echo '<p>Vous devez être connecté pour voir votre profil.</p>';
@@ -13,9 +12,8 @@ get_header(); ?>
     } else {
         // Récupérer l'utilisateur actuel
         $current_user = wp_get_current_user();
-        
-        // Affichage des informations de profil
         ?>
+
         <div class="profile-info">
             <h2>Informations de profil</h2>
             <p><strong>Nom d’utilisateur :</strong> <?php echo esc_html($current_user->user_login); ?></p>
@@ -38,18 +36,14 @@ get_header(); ?>
             if (isset($_FILES['profile_avatar']) && !empty($_FILES['profile_avatar']['name'])) {
                 $uploaded_file = $_FILES['profile_avatar'];
 
-                // Vérification du fichier téléchargé
                 if ($uploaded_file['error'] === UPLOAD_ERR_OK) {
                     $file_type = wp_check_filetype($uploaded_file['name']);
 
-                    // Vérification du type de fichier (image)
                     if (in_array($file_type['type'], ['image/jpeg', 'image/png', 'image/gif'])) {
-                        // Télécharger et associer l'image à l'utilisateur
                         $upload_dir = wp_upload_dir();
                         $uploaded_file_path = $upload_dir['path'] . '/' . basename($uploaded_file['name']);
                         move_uploaded_file($uploaded_file['tmp_name'], $uploaded_file_path);
 
-                        // Mise à jour de l'avatar via la bibliothèque de médias WordPress
                         $attachment = array(
                             'post_mime_type' => $file_type['type'],
                             'post_title' => sanitize_file_name($uploaded_file['name']),
@@ -59,7 +53,6 @@ get_header(); ?>
                         );
                         $attachment_id = wp_insert_attachment($attachment, $uploaded_file_path);
 
-                        // Mettre à jour l'avatar de l'utilisateur
                         update_user_meta($current_user->ID, 'profile_picture', $attachment_id);
                         echo '<p>Avatar mis à jour avec succès !</p>';
                     } else {
@@ -72,88 +65,87 @@ get_header(); ?>
             ?>
         </div>
 
-        <!-- Formulaire pour modifier le profil -->
+        <!-- Accordéon pour la section de modification de profil -->
         <div class="profile-edit">
-            <h2>Modifier mon profil</h2>
-            <form method="post">
-                <p>
-                    <label for="username">Nom d’utilisateur :</label>
-                    <input type="text" name="username" id="username" value="<?php echo esc_attr($current_user->user_login); ?>" required>
-                </p>
-                <p>
-                    <label for="email">Email :</label>
-                    <input type="email" name="email" id="email" value="<?php echo esc_attr($current_user->user_email); ?>" required>
-                </p>
-                <p>
-                    <label for="current_password">Mot de passe actuel :</label>
-                    <input type="password" name="current_password" id="current_password">
-                </p>
-                <p>
-                    <label for="new_password">Nouveau mot de passe :</label>
-                    <input type="password" name="new_password" id="new_password">
-                </p>
-                <p>
-                    <input type="submit" value="Sauvegarder les modifications">
-                </p>
-            </form>
+            <h2 onclick="toggleAccordion()">Modifier mon profil</h2>
+            <div id="accordion-content" style="display: none;">
+                <form method="post">
+                    <p>
+                        <label for="username">Nom d’utilisateur :</label>
+                        <input type="text" name="username" id="username" value="<?php echo esc_attr($current_user->user_login); ?>" required>
+                    </p>
+                    <p>
+                        <label for="email">Email :</label>
+                        <input type="email" name="email" id="email" value="<?php echo esc_attr($current_user->user_email); ?>" required>
+                    </p>
+                    <p>
+                        <label for="current_password">Mot de passe actuel :</label>
+                        <input type="password" name="current_password" id="current_password">
+                    </p>
+                    <p>
+                        <label for="new_password">Nouveau mot de passe :</label>
+                        <input type="password" name="new_password" id="new_password">
+                    </p>
+                    <p>
+                        <input type="submit" value="Sauvegarder les modifications">
+                    </p>
+                </form>
 
-            <?php
-            // Traitement du formulaire pour modifier les informations de profil
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $new_username = sanitize_text_field($_POST['username']);
-                $new_email = sanitize_email($_POST['email']);
-                $current_password = $_POST['current_password'];
-                $new_password = $_POST['new_password'];
+                <?php
+                // Traitement du formulaire pour modifier les informations de profil
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $new_username = sanitize_text_field($_POST['username']);
+                    $new_email = sanitize_email($_POST['email']);
+                    $current_password = $_POST['current_password'];
+                    $new_password = $_POST['new_password'];
 
-                // Validation des informations
-                $errors = array();
+                    $errors = array();
 
-                // Vérifier le mot de passe actuel
-                if (!empty($current_password)) {
-                    if (!wp_check_password($current_password, $current_user->user_pass, $current_user->ID)) {
+                    if (!empty($current_password) && !wp_check_password($current_password, $current_user->user_pass, $current_user->ID)) {
                         $errors[] = 'Le mot de passe actuel est incorrect.';
                     }
-                }
 
-                // Mise à jour du mot de passe si fourni
-                if (!empty($new_password)) {
-                    wp_set_password($new_password, $current_user->ID);
-                }
+                    if (!empty($new_password)) {
+                        wp_set_password($new_password, $current_user->ID);
+                    }
 
-                // Mise à jour de l'email et du nom d'utilisateur
-                if (email_exists($new_email) && $new_email != $current_user->user_email) {
-                    $errors[] = 'Cet email est déjà utilisé.';
-                }
+                    if (email_exists($new_email) && $new_email != $current_user->user_email) {
+                        $errors[] = 'Cet email est déjà utilisé.';
+                    }
 
-                if (username_exists($new_username) && $new_username != $current_user->user_login) {
-                    $errors[] = 'Ce nom d’utilisateur est déjà pris.';
-                }
+                    if (username_exists($new_username) && $new_username != $current_user->user_login) {
+                        $errors[] = 'Ce nom d’utilisateur est déjà pris.';
+                    }
 
-                // Si pas d'erreur, mettre à jour l'utilisateur
-                if (empty($errors)) {
-                    wp_update_user(array(
-                        'ID' => $current_user->ID,
-                        'user_login' => $new_username,
-                        'user_email' => $new_email
-                    ));
-
-                    echo '<p>Votre profil a été mis à jour avec succès.</p>';
-                } else {
-                    foreach ($errors as $error) {
-                        echo '<p style="color: red;">' . esc_html($error) . '</p>';
+                    if (empty($errors)) {
+                        wp_update_user(array(
+                            'ID' => $current_user->ID,
+                            'user_login' => $new_username,
+                            'user_email' => $new_email
+                        ));
+                        echo '<p>Votre profil a été mis à jour avec succès.</p>';
+                    } else {
+                        foreach ($errors as $error) {
+                            echo '<p style="color: red;">' . esc_html($error) . '</p>';
+                        }
                     }
                 }
-            }
-            ?>
+                ?>
+            </div>
         </div>
-        <div class="recent-activities">
-    <h2>Activités récentes</h2>
-    <?php display_user_activities($current_user->ID); ?>
-</div>
 
 
         <p><a href="<?php echo esc_url(home_url()); ?>">Retour à l'accueil</a></p>
     <?php } ?>
 </div>
+
+<script>
+// Fonction pour afficher/cacher le contenu de l'accordéon
+function toggleAccordion() {
+    var content = document.getElementById("accordion-content");
+    content.style.display = content.style.display === "none" ? "block" : "none";
+}
+</script>
+
 
 <?php get_footer(); ?>
