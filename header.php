@@ -6,31 +6,54 @@
     <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css">
     <?php wp_head(); ?>
+    
 </head>
+
 <body <?php body_class(); ?>>
 
-    <div class="wrap">
-        <!-- Menu fixe -->
-        <header>
-        <div class="header-container">
-        <div class="logo">
-            <a href="<?php echo esc_url(home_url(path: '/')); ?>">
-                
-            </a>
+<header class="header">
+    <a href="#" class="logo">
+        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/img/Logo.svg'); ?>" alt="Logo">
+    </a>
+    <button class="menu-toggle" id="menuToggle">
+        ☰
+    </button>
+</header>
+
+<!-- Menu de bord -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <div class="profile">
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/path/to/profile-picture.jpg'); ?>" alt="Profile Picture">
+            <p>Arthur Lacroix</p>
+            <button class="edit-profile">Modifier le profil</button>
         </div>
-       
-            <nav class="fixed-menu">
-                <ul>
-                <li><a href="#section1"> Taux Exprimé</a></li>
-                    <li><a href="#section2">Taux d'Abstention</a></li>
-                    <li><a href="#section3">Taux d'Inscription</a></li>
-                    <li><a href="#section4">Votes par Candidat</a></li>
-                    <li><a href="#section5">Taux de Votes Blancs</a></li>
-                </ul>
-            </nav>
-            
-            </div>
+    </div>
+    <ul class="sidebar-menu">
+        <li><a href="<?php echo esc_url(get_post_type_archive_link('equipe')); ?>"> Equipe</a></li>
+        <li><a href="<?php echo esc_url(get_post_type_archive_link('matchs')); ?>">Matchs</a></li>
+        
+    <hr>
+        <li><a href="#">À propos</a></li>
+        <li><a href="#">Créer une équipe</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" class="logout">← Se déconnecter</a></li>
+    </ul>
+</nav>
 
+<script>
+    // JavaScript pour ouvrir et fermer le menu
+    document.getElementById("menuToggle").addEventListener("click", function() {
+        document.getElementById("sidebar").classList.add("active");
+    });
 
-        </header>
+    document.getElementById("closeBtn").addEventListener("click", function() {
+        document.getElementById("sidebar").classList.remove("active");
+    });
+</script>
+
+<?php wp_footer(); ?>
+</body>
+</html>
 
