@@ -201,3 +201,6 @@ function join_match($match_name) {
     // Code pour lier l'utilisateur au match
     do_action('match_join', $match_name);
 }
+
+
+

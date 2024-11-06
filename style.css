@@ -11,70 +11,83 @@ Tags: simple, facile, sans danger, base pour la suite
 /* Styles pour le Header */
 
 /* Styles de base pour le corps */
+/* Lien pour importer la police Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* Styles de base */
 body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: #f4f4f4;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333; /* Couleur de base pour le texte, ajustable */
     margin: 0;
     padding: 0;
+    background-color:#101114
 }
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ajuster en fonction de la hauteur de votre conteneur */
+}
+/* Styles pour les titres */
+h1 {
+    font-size: 32px;
+    font-weight: 700; /* Style par défaut pour un titre important */
+    margin: 0 0 20px; /* Espace en dessous */
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase; /* Convertir le texte en majuscules */
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+/* Styles pour les paragraphes */
+p {
+    font-family: 'Lato', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    margin: 0 0 15px;
+    line-height: 1.6; /* Espacement entre les lignes pour une meilleure lisibilité */
+}
+
+/* Reset des marges et paddings pour une base propre */
+* {
+    box-sizing: border-box;
+}
+
 
 /* Style de la section d'introduction des matchs */
 .intro-match {
-    background-color: #1a1a1a;
-    color: #f0c700;
-    text-align: center;
+    
+    color: #ffffff;
+  
     padding: 40px 20px;
 }
 
-.intro-match h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
 
-.intro-match p {
-    font-size: 1.2em;
-    margin: 0;
-}
 
 /* Style de la section des détails des matchs */
 .match-details {
-    background-color: #fff;
-    color: #333;
+    
+    color: #ffffff;
     padding: 30px 20px;
-    text-align: center;
+    
 }
 
-.match-details h3 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-}
 
-.match-details p {
-    font-size: 1em;
-    line-height: 1.6;
-    margin: 0;
-}
 
 /* Style de la section d'introduction des équipes */
 .team-intro {
-    background-color: #1a1a1a;
-    color: #f0c700;
-    text-align: center;
+   
+    color: #ffffff;
     padding: 40px 20px;
     margin-top: 20px;
 }
 
-.team-intro h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.team-intro p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    color: #ddd;
-}
 
 
 /* Footer Styling pour version mobile */
@@ -357,25 +370,12 @@ hr {
             border-left: 2px solid #00aaff; /* Bordure bleue à gauche */
         }
         
-        .hero-content h1 {
-            font-size: 24px;
-            font-weight: 700;
-            line-height: 1.2;
-            color: #fff;
-            margin-bottom: 10px;
+        .hero-content h1  {
+            text-align: left;
         }
         
-        .hero-content h1 span {
-            color: #ffaa00; /* Couleur jaune pour "explorer" */
-        }
         
-        .hero-content p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        
-        .hero-content p span {
+        span {
             color: #ffaa00; /* Couleur jaune pour "League of Legends" */
         }
         
@@ -388,73 +388,141 @@ hr {
         .cta-button {
             display: inline-block;
             background-color: #ffaa00; /* Bouton jaune */
-            color: #111;
-            padding: 10px 20px;
+            color: #ffffff;
+            padding: 15px 50px;
             font-weight: bold;
             text-transform: uppercase;
             border-radius: 5px;
             text-decoration: none;
             transition: background-color 0.3s ease;
         }
-        
-        .cta-button:hover {
-            background-color: #e09900;
-        }
-        
 
 
+        .equipes-archive {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
 
-        /* Style pour les cartes d'équipe */
-.card-equipe {
+.equipe-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.equipe-item {
+    width: 100%;
+    max-width: 350px;
+}
+
+.joueurs ul {
+    display: flex; /* Utiliser Flexbox pour aligner les éléments en ligne */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne suivante si nécessaire */
+    justify-content: center; /* Centrer les éléments horizontalement */
+    padding: 0;
+    list-style: none;
+    gap: 20px; /* Ajoute un espace entre les éléments (joueurs) */
+}
+
+.joueurs li {
+    display: flex;
+    flex-direction: column; /* Aligner l'avatar et le nom en colonne */
+    align-items: center; /* Centrer le contenu à l'horizontale */
+    margin: 10px; /* Ajoute un espacement autour de chaque joueur */
+    text-align: center;
+}
+
+.joueur-photo {
+    width: 100px; /* Taille de l'avatar */
+    height: 100px;
+    border-radius: 50%; /* Rendre l'image ronde */
+    object-fit: cover; /* Assurer que l'image garde son ratio sans être déformée */
+    margin-bottom: 10px; /* Espacement entre l'avatar et le nom */
+}
+
+.joueur-name {
+    font-size: 16px; /* Taille du texte */
+    font-weight: bold; /* Mettre le nom en gras */
+    color: #ffffff; /* Couleur du texte */
+}
+
+.equipe-card {
     background-color: #1a1a1a;
     border-radius: 10px;
     padding: 20px;
     color: #fff;
     text-align: center;
-    width: 300px;
-    margin: 10px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
 }
 
-.card-equipe .card-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.equipe-card:hover {
+    transform: scale(1.05);
 }
 
-.card-equipe .card-title {
+.equipe-title a {
+    color: #f0c700;
+    font-size: 1.5em;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.equipe-title a:hover {
+    color: #fff;
+}
+
+.joueurs h3, .matchs h3 {
     font-size: 1.2em;
     color: #f0c700;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.card-equipe .card-description {
-    font-size: 0.9em;
-    margin: 10px 0;
+.joueurs ul, .matchs ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.card-equipe .card-membres {
+.joueurs li, .matchs li {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
+    align-items: center;
+    margin: 5px 0;
 }
 
-.card-equipe .membre-icon {
+.joueur-photo {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    margin-right: 10px;
     border: 2px solid #333;
 }
 
-.card-equipe .card-button {
-    display: inline-block;
-    padding: 8px 12px;
-    color: #fff;
-    background-color: #f0c700;
-    border-radius: 50%;
-    font-size: 1.5em;
+.matchs a {
+    color: #f0c700;
     text-decoration: none;
+}
+
+.matchs a:hover {
+    color: #fff;
+}
+
+.equipe-link .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0c700;
+    color: #ffffff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
     margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.equipe-link .btn:hover {
+    background-color: #fff;
+    color: #1a1a1a;
 }
 
 /* Style pour le carrousel des matchs */
@@ -524,11 +592,7 @@ hr {
     margin-bottom: 40px;
 }
 
-.intro-text h1 {
-    font-size: 2.5em;
-    color: #39ff14;
-    text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
-}
+
 
 .intro-text p {
     font-size: 1.2em;
@@ -557,8 +621,8 @@ hr {
 }
 
 .filters button {
-    background-color: #39ff14;
-    color: #1a1a1d;
+    background-color: #f0c700;
+    color: #ffffff;
     border: none;
     padding: 8px 16px;
     font-size: 1em;
@@ -569,7 +633,7 @@ hr {
 }
 
 .filters button:hover {
-    background-color: #32cd12;
+    background-color: #f0c700;
 }
 
 /* Match List Styling */
@@ -598,18 +662,18 @@ hr {
 .match-thumbnail img {
     width: 100%;
     height: auto;
-    border-bottom: 2px solid #39ff14;
+    border-bottom: 2px solid #f0c700;
 }
 
 .match-title {
     font-size: 1.5em;
     margin-top: 15px;
-    color: #39ff14;
+    color: #f0c700;
     text-align: center;
 }
 
 .match-title a {
-    color: #39ff14;
+    color: #f0c700;
     text-decoration: none;
 }
 
@@ -624,11 +688,11 @@ hr {
 }
 
 .match-meta strong {
-    color: #39ff14;
+    color: #f0c700;
 }
 
 .match-excerpt {
-    color: #cfcfcf;
+    color: #ffffff;
     font-size: 1em;
     margin-top: 15px;
 }
@@ -636,7 +700,7 @@ hr {
 /* Match Link Button */
 .match-link .btn {
     display: inline-block;
-    background-color: #39ff14;
+    background-color: #f0c700;
     color: #1a1a1d;
     font-weight: bold;
     text-align: center;
@@ -647,30 +711,10 @@ hr {
 }
 
 .match-link .btn:hover {
-    background-color: #32cd12;
+    background-color: #f0c700;
 }
 
-/* Pagination */
-.pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-}
 
-.pagination a {
-    color: #ffffff;
-    background-color: #333;
-    padding: 8px 12px;
-    margin: 0 5px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background 0.3s;
-}
-
-.pagination a:hover {
-    background-color: #39ff14;
-    color: #1a1a1d;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -698,5 +742,23 @@ hr {
         margin-bottom: 10px;
     }
 }
+
+
+.custom-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
 
 

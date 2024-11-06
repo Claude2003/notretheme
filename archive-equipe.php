@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
 <div class="equipes-archive">
-    <h1>Liste des Équipes</h1>
-    <p>Ici, vous pouvez explorer les équipes composées de joueurs passionnés. Chaque équipe participe à divers matchs. Découvrez les joueurs de chaque équipe, ainsi que les matchs qu'ils ont joués.</p>
+    
+    <p> Ici, nous vous offrons un accès direct aux matchs les plus attendus, aux équipes de haut niveau et aux compétitions palpitantes de league of legends. Rejoignez une communauté de passionnés qui vivent chaque moment intensément. Suivez les équipes en temps réel et ne manquez jamais une occasion d’encourager vos favoris.</p>
 
     <?php if (have_posts()) : ?>
         <div class="equipe-list">
@@ -21,32 +21,36 @@
                         <div class="joueurs">
                             <h3>Joueurs :</h3>
                             <ul>
-                                <?php
-                                // Récupération des joueurs via ACF (modifié selon votre configuration)
-                                for ($i = 1; $i <= 4; $i++) {
-                                    $joueur = get_field('joueur' . $i); // Récupérer l'ID du joueur
-                                    if ($joueur) {
-                                        $user_info = get_userdata($joueur); // Obtenir les infos utilisateur pour ce joueur
-                                        if ($user_info) {
-                                            // Affichage de la photo et du nom du joueur
-                                            $photo = get_avatar_url($joueur);
-                                            echo '<li>';
-                                            echo '<img src="' . esc_url($photo) . '" alt="' . esc_attr($user_info->display_name) . '" class="joueur-photo">';
-                                            echo esc_html($user_info->display_name);
-                                            echo '</li>';
-                                        }
-                                    }
-                                }
-                                ?>
-                            </ul>
-                        </div>
+                            
+        <?php
+        // Récupération des joueurs via ACF (modifié selon votre configuration)
+        for ($i = 1; $i <= 4; $i++) {
+            $joueur = get_field('joueur' . $i); // Récupérer l'ID du joueur
+            if ($joueur) {
+                $user_info = get_userdata($joueur); // Obtenir les infos utilisateur pour ce joueur
+                if ($user_info) {
+                    // Affichage de la photo et du nom du joueur
+                    $photo = get_avatar_url($joueur);
+                    echo '<li class="joueur-item">';
+                    echo '<div class="joueur-photo-container">';
+                    echo '<img src="' . esc_url($photo) . '" alt="' . esc_attr($user_info->display_name) . '" class="joueur-photo">';
+                    echo '</div>';
+                    echo '<p class="joueur-name">' . esc_html($user_info->display_name) . '</p>';
+                    echo '</li>';
+                }
+            }
+        }
+        ?>
+    </ul>
+</div>
+
 
                         <!-- Affichage des matchs associés à l'équipe -->
                         <div class="matchs">
                             <h3>Matchs associés :</h3>
                             <?php
                             // Récupération des matchs via ACF (champ de relation avec les matchs)
-                            $matchs = get_field('matchs'); // Récupérer les matchs associés
+                            $matchs = get_field('match'); // Récupérer les matchs associés
                             
                             if ($matchs) {
                                 // Si plusieurs matchs

@@ -2,7 +2,7 @@
 
 <div class="matchs-archive">
     <div class="intro-text">
-        <h1>Liste des Matchs</h1>
+        
         <p>Explorez ici tous les matchs à venir. Retrouvez les informations importantes, comme la date, l'heure et le lieu de chaque match. Restez à jour et ne manquez aucune rencontre !</p>
     </div>
 <!-- Formulaire de filtre pour les taxonomies -->
